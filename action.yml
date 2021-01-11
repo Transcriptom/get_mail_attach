@@ -1,0 +1,42 @@
+name: 'get_mail_attachment'
+description: 'get unseen mail attachment of the mailbox'
+inputs:
+  client:  # imap.qq.com:993
+    description: 'the client and port of the mail'
+    required: true
+    default: 'imap.qq.com:993'
+
+  user:  # username of the mail
+    description: 'username of the mail'
+    required: true
+    default: 'seqyuan'
+
+  passwd:  # passwd of the mail
+    description: 'passwd of the mail'
+    required: true
+
+  maildir:  
+    description: 'mailbox dir to read'
+    required: true
+    default: "其他文件夹/DE"
+
+
+outputs: 
+  need_next_step: # TRUE or FALSE
+    description: "success download email attachment, and need to do next step"
+  mail_from: # from_mail@example.com
+    description: "mail_from which email, need to FW"
+  more_unseen_mail: # TRUE or FALSE
+    description: "there is more unseen email in the mailbox, need to run more actions"
+  subject: 
+    description: "subject of the mail"
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.client }} 
+    - ${{ inputs.user }}
+    - ${{ inputs.passwd }}
+    - ${{ inputs.maildir }}
+
