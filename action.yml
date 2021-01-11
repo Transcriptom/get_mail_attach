@@ -30,6 +30,7 @@ outputs:
     description: "there is more unseen email in the mailbox, need to run more actions"
   subject: 
     description: "subject of the mail"
+    
 
 runs:
   using: 'docker'
